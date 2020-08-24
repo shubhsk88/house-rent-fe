@@ -6,8 +6,10 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.20.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
     "react-scripts": "3.4.3",
     "twin.macro": "^1.7.0"
   },
@@ -15,6 +17,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
+    "lint:fix": "eslint \"src/**/*.{js,jsx}\" --fix",
     "eject": "react-scripts eject",
     "build:css": "postcss src/styles/common/tailwind.css -o src/styles/common/main.css"
   },
@@ -35,7 +39,26 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.8.6",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb": "18.1.x",
+    "eslint-plugin-import": "2.20.x",
+    "eslint-plugin-jsx-a11y": "6.2.x",
+    "eslint-plugin-react": "7.20.x",
+    "eslint-plugin-react-hooks": "2.5.x",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "postcss-cli": "^7.1.1",
     "tailwindcss": "^1.7.3"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "yarn lint:fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx lint-staged"
+    }
   }
 }
