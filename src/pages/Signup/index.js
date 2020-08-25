@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { Formik, Form, Field } from 'formik';
-
+import { publicFetch } from '../../utils';
 import { Label, Input, HyperLink, Button } from '../../components/common';
 
 const SignupSchema = Yup.object().shape({
-  userName: Yup.string()
-    .required('The username is required')
-    .min(5, 'The username is not valid'),
+  username: Yup.string().required('The username is required'),
   password: Yup.string()
     .required('Password is required')
-    .min(6, 'The password should be more than 6 characters'),
+    .min(6, 'Password should be more than 6 characters')
+    .required('Password is required'),
   name: Yup.string().required('Name is required'),
 });
 
 const SignUp = () => {
-  const [value, setValue] = useState();
   const submitData = async (value) => {
     try {
-        
+      const { data } = await publicFetch.post('/users', value);
+     
     } catch (error) {
-      
+      console.error(error);
     }
   };
 
@@ -34,43 +33,45 @@ const SignUp = () => {
       </p>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => submitData(values)}
         validationSchema={SignupSchema}
       >
-        <Form>
-          <div>
+        {() => (
+          <Form>
             <div>
-              <Label text="Name" />
+              <div>
+                <Label text="Name" />
+              </div>
+              <Input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Enter your name"
+              />
             </div>
-            <Field
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Enter your name"
-            />
-          </div>
-          <div>
             <div>
-              <Label text="Username" />
+              <div>
+                <Label text="Username" />
+              </div>
+              <Input
+                name="username"
+                type="text"
+                placeholder="Enter your username"
+              />
             </div>
-            <Input
-              name="username"
-              type="text"
-              placeholder="Enter your username"
-            />
-          </div>
-          <div>
             <div>
-              <Label text="Password" />
+              <div>
+                <Label text="Password" />
+              </div>
+              <Input
+                name="password"
+                type="password"
+                placeholder="Enter your Pasword"
+              />
             </div>
-            <Input
-              name="password"
-              type="password"
-              placeholder="Enter your Pasword"
-            />
-          </div>
-          <Button type="submit" text="Sign up" />
-        </Form>
+            <Button type="submit" text="Sign up" />
+          </Form>
+        )}
       </Formik>
     </div>
   );
