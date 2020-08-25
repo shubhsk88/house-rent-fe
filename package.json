@@ -13,7 +13,8 @@
     "react-helmet": "^6.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "twin.macro": "^1.7.0"
+    "twin.macro": "^1.7.0",
+    "yup": "^0.29.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,7 +42,6 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.8.6",
-    "eslint": "^7.7.0",
     "eslint-config-airbnb": "18.1.x",
     "eslint-plugin-import": "2.20.x",
     "eslint-plugin-jsx-a11y": "6.2.x",

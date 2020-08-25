@@ -19,6 +19,9 @@
     "import/no-unresolved": "off",
     "no-shadow": "off",
     "react/prop-types": "off",
+    "linebreak-style": "off",
+    "import/prefer-default-export": "off",
+
     "react/button-has-type": "off",
     "arrow-parens": ["error", "as-needed"]
   },
