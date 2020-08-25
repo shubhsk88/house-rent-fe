@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as Yup from 'yup';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import { publicFetch } from '../../utils';
 import { Label, Input, HyperLink, Button } from '../../components/common';
 
@@ -17,7 +17,6 @@ const SignUp = () => {
   const submitData = async (value) => {
     try {
       const { data } = await publicFetch.post('/users', value);
-     
     } catch (error) {
       console.error(error);
     }
