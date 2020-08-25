@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
+
 const Card = ({ house }) => {
   const [isStarClick, setIsStarClick] = useState(false);
   return (
@@ -9,6 +10,10 @@ const Card = ({ house }) => {
         <div className="flex flex-col">
           <h2 className="py-1 text-xl ">{house.title}</h2>
           {isStarClick ? <AiFillStar /> : <AiOutlineStar />}
+        </div>
+        <div className="flex flex-col">
+          <h3 className="text-lg">{`$${house.price} `}</h3>
+          <h3>per month</h3>
         </div>
       </div>
     </div>
