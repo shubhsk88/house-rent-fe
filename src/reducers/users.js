@@ -1,9 +1,11 @@
 import { FETCH_USER, SIGNOUT_USER } from '../actions';
 
+const user = localStorage.getItem('user');
+const token = localStorage.getItem('token');
 const intialState = {
-  user: {},
-  token: null,
-  isLoggedIn: false,
+  user: user ? JSON.parse(user) : {},
+  token,
+  isLoggedIn: token ? true : false,
 };
 
 export default function (state = intialState, action) {

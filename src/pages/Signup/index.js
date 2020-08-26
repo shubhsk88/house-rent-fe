@@ -15,10 +15,13 @@ const SignupSchema = Yup.object().shape({
 });
 
 const SignUp = () => {
+  const dispatch = useDispatch();
   const submitData = async (value) => {
     try {
       const { data } = await publicFetch.post('/users', value);
-      console.log(data);
+      if (data.token) {
+        dispatch(fetchUser(data));
+      }
     } catch (error) {
       console.error(error);
     }
