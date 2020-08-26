@@ -36,7 +36,7 @@ const Description = () => {
                 <div className="host-title">Sara Drasner</div>
               </div>
               <div className="pricing">
-                <div className="price">{house.price}</div>
+                <div className="price">${house.price}</div>
                 <div>Per Month</div>
               </div>
             </div>
