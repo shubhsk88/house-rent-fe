@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { FiMenu, FiSearch } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
-import { getHouses } from '../actions';
+import {fetchHouses } from '../actions';
 import { getHousesData } from '../selectors';
 import Card from '../components/Card';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ const Home = () => {
   const houses = useSelector(getHousesData);
 
   useEffect(() => {
-    dispatch(getHouses());
+    dispatch(fetchHouses());
   }, [dispatch]);
 
   return (
