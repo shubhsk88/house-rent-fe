@@ -12,7 +12,7 @@ export const Input = ({ type, name, placeholder }) => {
         type={type}
         name={field.name}
         placeholder={placeholder}
-        className="appearance-none rounded-full border focus:border-orange-600 "
+        className="appearance-none  p-2 focus:rounded-full rounded-full border focus:outline-none border-gray-200 focus:border-orange-700 focus:text-orange-600 "
       />
       {meta.touched && meta.error ? <div>{meta.error} </div> : null}
     </>

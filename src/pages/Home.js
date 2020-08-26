@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { FiMenu, FiSearch } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
-import {fetchHouses } from '../actions';
+import { fetchHouses } from '../actions';
 import { getHousesData } from '../selectors';
 import Card from '../components/Card';
 import { Link } from 'react-router-dom';
@@ -14,7 +14,7 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <div className="hiio">
+    <div className="mt-6">
       <div className="flex justify-around">
         <FiMenu />
         <h2 className="text-lg font-bold">Houses</h2>
