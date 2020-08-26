@@ -3,6 +3,9 @@ import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import { Button, Label, HyperLink, Input } from '../../components/common';
 import { publicFetch } from '../../utils';
+import { useDispatch } from 'react-redux';
+import { fetchUser } from '../../actions';
+
 const LoginSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
   password: Yup.string().required('Password is required'),
@@ -10,11 +13,16 @@ const LoginSchema = Yup.object().shape({
 
 const Login = () => {
   const intialState = { username: '', password: '' };
-
+  const dispatch = useDispatch();
   const onLogin = async (credential) => {
     try {
       const { data } = await publicFetch.post('/login', credential);
-      console.log(data);
+      if(data.token)
+      {
+        console.log(data);
+        dispatch(fetchUser(data));
+      }
+      
     } catch (error) {
       console.log(error);
     }

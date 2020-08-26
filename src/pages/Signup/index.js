@@ -3,7 +3,8 @@ import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import { publicFetch } from '../../utils';
 import { Label, Input, HyperLink, Button } from '../../components/common';
-
+import { useDispatch } from 'react-redux';
+import { fetchUser } from '../../actions';
 const SignupSchema = Yup.object().shape({
   username: Yup.string().required('The username is required'),
   password: Yup.string()
@@ -17,6 +18,7 @@ const SignUp = () => {
   const submitData = async (value) => {
     try {
       const { data } = await publicFetch.post('/users', value);
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
