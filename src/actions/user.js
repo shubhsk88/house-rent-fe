@@ -1,3 +1,6 @@
+
+
+
 export const FETCH_USER = 'GET_USER';
 
 export const SIGNOUT_USER = 'SIGNOUT_USER';
@@ -9,5 +12,8 @@ export function fetchUser(data) {
 }
 
 export function signoutUser() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+   
   return { type: SIGNOUT_USER };
 }

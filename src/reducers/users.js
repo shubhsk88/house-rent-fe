@@ -15,7 +15,7 @@ export default function (state = intialState, action) {
     case FETCH_USER:
       return { ...state, user: payload.user, token: payload.token };
     case SIGNOUT_USER:
-      return { ...state };
+      return { ...state, intialState };
     default:
       return state;
   }
