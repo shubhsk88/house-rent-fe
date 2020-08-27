@@ -1,68 +1,68 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Housemon  Renting Webapp
 
-## Available Scripts
+Housemon is app which allows the user to look for rental houses and allow them to add the houses in their favourite list ,so the renting become easy for users!
 
-In the project directory, you can run:
+This is the frontend part of the application in order to see the api part of this application please visit [Here](https://github.com/shubhsk88/house-renting-api)
+## Live Demo
 
-### `yarn start`
+[View Live Demo](https://pokedexi.netlify.app/)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Screenshots
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+![screenshot](./public/main.png)
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+## Features & Usage
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- A list of houses will be shown to the users in the default page
+- A user can login and signup using name and username
+- A user can see the description of the hotel by clicking onn the card
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- User can navigate back to the home page by clicking on the home button
+- User can add the hotel in their favourite list by click on the description for the button
 
-### `yarn eject`
+## Potential Features
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Authentication
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Setup
 
-## Learn More
+1. Clone this repository and access the project's directory.
+2. Run "yarn install".
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Run "yarn start" to work on the development server.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Built With
 
-### Code Splitting
+- JavaScript/ES6
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+- React
+- React Hooks
+- React Router
+- Redux
+- Tailwind CSS
+- React Redux
+- Pokeapi
+- Netlify
 
-### Analyzing the Bundle Size
+## Author
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+👤 **Shubham Singh**
 
-### Making a Progressive Web App
+- Github: [@shubhsk88](https://github.com/shubhsk88)
+- Twitter: [@shubhski](twitter.com/shubski)
+- Linkedin: [linkedin](https://www.linkedin.com/in/shubhski/)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## 🤝 Contributing
 
-### Advanced Configuration
+Contributions, issues and feature requests are welcome!
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Feel free to check the [issues page](https://github.com/shubhsk88/house-rent-fe/issues).
 
-### Deployment
+## Show your support
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Give a ⭐️ if you like this project!
