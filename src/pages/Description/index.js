@@ -81,7 +81,11 @@ const Description = () => {
             <p className="p-1">{house.description}</p>
           </div>
           {isAuthenticate && !checkFavourite ? (
-            <button onClick={addTofavourite} className="favourite">
+            <button
+              type="button"
+              onClick={addTofavourite}
+              className="favourite"
+            >
               Add To favourite
             </button>
           ) : null}

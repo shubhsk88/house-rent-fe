@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { useField } from 'formik';
+import PropTypes from 'prop-types';
 
 export const Input = ({ type, name, placeholder }) => {
   const [field, meta] = useField(name);
@@ -23,4 +24,10 @@ export const Input = ({ type, name, placeholder }) => {
       ) : null}
     </>
   );
+};
+
+Input.propTypes = {
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Card = ({ house }) => (
   <div className="overflow-hidden my-4 rounded w-64 shadow-lg ">
@@ -16,3 +17,12 @@ const Card = ({ house }) => (
 );
 
 export default Card;
+
+Card.propTypes = {
+  house: PropTypes.shape({
+    name: PropTypes.string,
+    title: PropTypes.string,
+    price: PropTypes.number,
+    img_url: PropTypes.string,
+  }).isRequired,
+};

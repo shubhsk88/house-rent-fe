@@ -1,8 +1,9 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable import/prefer-default-export */
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export const Button = ({
-  type, text, onClick,
-}) => (
+export const Button = ({ type, text, onClick }) => (
   <button
     type={type}
     onClick={onClick}
@@ -11,3 +12,9 @@ export const Button = ({
     {text}
   </button>
 );
+
+Button.propTypes = {
+  type: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
