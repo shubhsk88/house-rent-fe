@@ -7,6 +7,7 @@ import { AiOutlineLeft, AiOutlineSearch } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import StyledDescription from './style';
 import { publicFetch } from '../../utils';
+import { Loading } from '../../components/common';
 
 const Description = () => {
   const { id } = useParams();
@@ -15,9 +16,11 @@ const Description = () => {
   const isAuthenticate = useSelector(isLoggedIn);
   const userId = useSelector(getUserId);
   const houseList = useSelector(getUserList);
+
   const [checkFavourite, setCheckFavourite] = useState(false);
 
-  const isLoading = useSelector((state) => state.houses.isHouseLoaded);
+  const isLoading = useSelector((state) => state.houses.isHouseLoading);
+
   useEffect(() => {
     dispatch(fetchHouse(id));
     return () => {
@@ -43,14 +46,15 @@ const Description = () => {
 
   return (
     <>
-      {!isLoading ? (
+      {isLoading ? (
+        <Loading />
+      ) : (
         <StyledDescription image={house.img_url}>
-          <div className="flex justify-around mt-2">
-            <Link to="/">
+          <div className="flex justify-around mt-2 ">
+            <Link to="/" className="mx-4 my-4">
               <AiOutlineLeft size="20" />
             </Link>
-            <h2 className="text-2xl mb-2">Sample Name</h2>
-            <AiOutlineSearch size="20" />
+            <h2 className="text-lg mb-2">{house.title}</h2>
           </div>
           <div className="image-container ">
             <div className="flex justify-around">
@@ -66,12 +70,7 @@ const Description = () => {
           </div>
           <div className="p-4">
             <h3 className="py-2 text-lg font-bold">About this listing</h3>
-            <p className="">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis,
-              ratione perferendis hic optio enim facere illo aliquid quam neque
-              non recusandae tempora iure. Possimus, labore voluptatibus quae id
-              magnam fugit!
-            </p>
+            <p className="p-1">{house.description}</p>
           </div>
           {isAuthenticate && !checkFavourite ? (
             <button onClick={addTofavourite} className="favourite">
@@ -79,8 +78,6 @@ const Description = () => {
             </button>
           ) : null}
         </StyledDescription>
-      ) : (
-        <div>Loading</div>
       )}
     </>
   );

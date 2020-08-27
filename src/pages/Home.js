@@ -5,7 +5,7 @@ import { fetchHouses, signoutUser, fetchUserList } from '../actions';
 import { getHousesData, isLoggedIn, getUserList, getToken } from '../selectors';
 import { Link, useHistory } from 'react-router-dom';
 import Card from '../components/Card';
-import { ButtonMain, LoginButton } from '../components/common';
+import { ButtonMain, LoginButton, Loading } from '../components/common';
 import Carousel, {
   slidesToShowPlugin,
   slidesToScrollPlugin,
@@ -20,6 +20,8 @@ const Home = () => {
   const [housesList, setHousesList] = useState(houses);
   const token = useSelector(getToken);
   const userList = useSelector(getUserList);
+  const isLoaded = useSelector((state) => state.houses.isHousesLoading);
+  console.log(isLoaded);
 
   const history = useHistory();
   useEffect(() => {
@@ -51,14 +53,12 @@ const Home = () => {
     setFavourite(false);
   };
 
-  
-
   return (
     <div className="mt-6">
       <div className="flex justify-around">
         {isAuthenticate ? (
           <ButtonMain
-            onClick={favourite ?  onHome: onFavourite}
+            onClick={favourite ? onHome : onFavourite}
             text={favourite ? 'Home' : 'My Favourite'}
           />
         ) : (
@@ -72,36 +72,40 @@ const Home = () => {
           <LoginButton />
         )}
       </div>
-      <div className="my-8 p-2 ">
-        <Carousel
-          plugins={[
-            'centered',
-            'infinite',
-            'arrows',
-            {
-              resolve: slidesToShowPlugin,
-              options: {
-                numberOfSlides: 3,
+      {isLoaded ? (
+        <Loading />
+      ) : (
+        <div className="my-8 p-2 ">
+          <Carousel
+            plugins={[
+              'centered',
+              'infinite',
+              'arrows',
+              {
+                resolve: slidesToShowPlugin,
+                options: {
+                  numberOfSlides: 3,
+                },
               },
-            },
-            {
-              resolve: slidesToScrollPlugin,
-              options: {
-                numberOfSlides: 3,
+              {
+                resolve: slidesToScrollPlugin,
+                options: {
+                  numberOfSlides: 3,
+                },
               },
-            },
-          ]}
-          offset={-120}
-        >
-          {housesList.length !== 0
-            ? housesList.map((house) => (
-                <Link key={house.id} to={`/houses/${house.id}`}>
-                  <Card house={house} />
-                </Link>
-              ))
-            : null}
-        </Carousel>
-      </div>
+            ]}
+            offset={-120}
+          >
+            {housesList.length !== 0
+              ? housesList.map((house) => (
+                  <Link key={house.id} to={`/houses/${house.id}`}>
+                    <Card house={house} />
+                  </Link>
+                ))
+              : null}
+          </Carousel>
+        </div>
+      )}
     </div>
   );
 };
