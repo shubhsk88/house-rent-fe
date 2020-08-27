@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchHouse, resetHouse } from '../../actions';
-import { getHouse, isLoggedIn, getUserId,getUserList } from '../../selectors';
+import { getHouse, isLoggedIn, getUserId, getUserList } from '../../selectors';
 import { AiOutlineLeft, AiOutlineSearch } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import StyledDescription from './style';
@@ -14,7 +14,8 @@ const Description = () => {
   const house = useSelector(getHouse);
   const isAuthenticate = useSelector(isLoggedIn);
   const userId = useSelector(getUserId);
-  const houseList=useSelector(getUserList)
+  const houseList = useSelector(getUserList);
+  const [checkFavourite, setCheckFavourite] = useState(false);
 
   const isLoading = useSelector((state) => state.houses.isHouseLoaded);
   useEffect(() => {
@@ -23,19 +24,22 @@ const Description = () => {
       dispatch(resetHouse());
     };
   }, [dispatch, id]);
+
   const addTofavourite = async () => {
     const userCredentials = { user_id: userId, house_id: id };
-    try{
-       await publicFetch.post('/favourites', userCredentials);
-
-    }catch(e)
-    {
-      console.error(e)
+    try {
+      await publicFetch.post('/favourites', userCredentials);
+    } catch (e) {
+      console.error(e);
     }
-    
   };
-
-  
+  useEffect(() => {
+    let check = !!houseList.find((house) => house.id === Number(id));
+    console.log(houseList, id, check);
+    if (check) {
+      setCheckFavourite(true);
+    }
+  }, [houseList, id]);
 
   return (
     <>
@@ -69,7 +73,7 @@ const Description = () => {
               magnam fugit!
             </p>
           </div>
-          {isAuthenticate ? (
+          {isAuthenticate && !checkFavourite ? (
             <button onClick={addTofavourite} className="favourite">
               Add To favourite
             </button>
