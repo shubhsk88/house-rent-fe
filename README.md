@@ -1,8 +1,9 @@
-# Housemon  Renting Webapp
+# Housemon Renting Webapp
 
 Housemon is app which allows the user to look for rental houses and allow them to add the houses in their favourite list ,so the renting become easy for users!
 
 This is the frontend part of the application in order to see the api part of this application please visit [Here](https://github.com/shubhsk88/house-renting-api)
+
 ## Live Demo
 
 [View Live Demo](https://pokedexi.netlify.app/)
@@ -11,14 +12,11 @@ This is the frontend part of the application in order to see the api part of thi
 
 ![screenshot](./public/main.png)
 
-
-
 ## Features & Usage
 
 - A list of houses will be shown to the users in the default page
 - A user can login and signup using name and username
 - A user can see the description of the hotel by clicking onn the card
-
 
 - User can navigate back to the home page by clicking on the home button
 - User can add the hotel in their favourite list by click on the description for the button
@@ -26,8 +24,6 @@ This is the frontend part of the application in order to see the api part of thi
 ## Potential Features
 
 - Authentication
-
-
 
 ## Setup
 
@@ -41,12 +37,12 @@ This is the frontend part of the application in order to see the api part of thi
 - JavaScript/ES6
 
 - React
+
 - React Hooks
 - React Router
 - Redux
 - Tailwind CSS
 - React Redux
-- Pokeapi
 - Netlify
 
 ## Author
@@ -66,3 +62,7 @@ Feel free to check the [issues page](https://github.com/shubhsk88/house-rent-fe/
 ## Show your support
 
 Give a ⭐️ if you like this project!
+
+## Acknowledgements
+
+- Behance design by [Alexey Savitskiy](<https://www.behance.net/gallery/37706679/Circle-(Landing-page-Dashboard-Mobile-App))
