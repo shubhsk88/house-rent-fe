@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchHouse, resetHouse } from '../../actions';
-import { getHouse, isLoggedIn, getUserId } from '../../selectors';
+import { getHouse, isLoggedIn, getUserId,getUserList } from '../../selectors';
 import { AiOutlineLeft, AiOutlineSearch } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import StyledDescription from './style';
@@ -14,6 +14,7 @@ const Description = () => {
   const house = useSelector(getHouse);
   const isAuthenticate = useSelector(isLoggedIn);
   const userId = useSelector(getUserId);
+  const houseList=useSelector(getUserList)
 
   const isLoading = useSelector((state) => state.houses.isHouseLoaded);
   useEffect(() => {
@@ -25,7 +26,7 @@ const Description = () => {
   const addTofavourite = async () => {
     const userCredentials = { user_id: userId, house_id: id };
     try{
-      const {data} = await publicFetch.post('/favourites', userCredentials);
+       await publicFetch.post('/favourites', userCredentials);
 
     }catch(e)
     {
@@ -33,6 +34,8 @@ const Description = () => {
     }
     
   };
+
+  
 
   return (
     <>

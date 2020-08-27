@@ -23,9 +23,6 @@ export function fetchUserList(token) {
       headers: { Authorization: `Bearer  ${token}` },
     };
 
-    const bodyParameters = {
-      key: 'value',
-    };
     try {
       const data = await publicFetch.get('/auto_login', config);
       console.log(data);
