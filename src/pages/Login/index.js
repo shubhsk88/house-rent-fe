@@ -6,6 +6,9 @@ import { publicFetch } from '../../utils';
 import { useDispatch } from 'react-redux';
 import { fetchUser } from '../../actions';
 import StyledLogin from './style';
+import { useHistory } from 'react-router-dom';
+
+
 const LoginSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
   password: Yup.string().required('Password is required'),
@@ -14,12 +17,13 @@ const LoginSchema = Yup.object().shape({
 const Login = () => {
   const intialState = { username: '', password: '' };
   const dispatch = useDispatch();
+  const history = useHistory();
   const onLogin = async (credential) => {
     try {
       const { data } = await publicFetch.post('/login', credential);
       if (data.token) {
-        console.log(data);
         dispatch(fetchUser(data));
+        history.push('/');
       }
     } catch (error) {
       console.log(error);
