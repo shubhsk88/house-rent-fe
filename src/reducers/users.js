@@ -1,4 +1,4 @@
-import { FETCH_USER, SIGNOUT_USER } from '../actions';
+import { FETCH_USER, SIGNOUT_USER ,FETCH_USER_LIST} from '../actions';
 
 const user = localStorage.getItem('user');
 const token = localStorage.getItem('token');
@@ -6,6 +6,7 @@ const intialState = {
   user: user ? JSON.parse(user) : {},
   token,
   isLoggedIn: token ? true : false,
+  userList:[]
 };
 
 export default function (state = intialState, action) {
@@ -21,6 +22,8 @@ export default function (state = intialState, action) {
       };
     case SIGNOUT_USER:
       return { ...state, user: {}, isLoggedIn: false, token: null };
+    case FETCH_USER_LIST:
+        return {...state,userList:payload}  
     default:
       return state;
   }

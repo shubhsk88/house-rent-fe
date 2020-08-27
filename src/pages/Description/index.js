@@ -52,9 +52,7 @@ const Description = () => {
               magnam fugit!
             </p>
           </div>
-          {isAuthenticate ? (
-            <button className="favourite">Add To favourite</button>
-          ) : null}
+          {isAuthenticate?<button className="favourite">Add To favourite</button>:null}
         </StyledDescription>
       ) : (
         <div>Loading</div>

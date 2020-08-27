@@ -1,8 +1,7 @@
-
-
+import { publicFetch } from '../utils';
 
 export const FETCH_USER = 'GET_USER';
-
+export const FETCH_USER_LIST = 'USER_LIST';
 export const SIGNOUT_USER = 'SIGNOUT_USER';
 
 export function fetchUser(data) {
@@ -12,8 +11,28 @@ export function fetchUser(data) {
 }
 
 export function signoutUser() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-   
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+
   return { type: SIGNOUT_USER };
+}
+
+export function fetchUserList(token) {
+  return async function (dispatch) {
+    const config = {
+      headers: { Authorization: `Bearer  ${token}` },
+    };
+
+    const bodyParameters = {
+      key: 'value',
+    };
+    try {
+      const data = await publicFetch.get('/auto_login', config);
+      console.log(data);
+
+      return dispatch({ type: FETCH_USER_LIST, payload: data.data.houses });
+    } catch (e) {
+      console.error(e);
+    }
+  };
 }

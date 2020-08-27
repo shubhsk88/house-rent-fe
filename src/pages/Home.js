@@ -1,32 +1,48 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiMenu } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchHouses, signoutUser } from '../actions';
-import { getHousesData, isLoggedIn } from '../selectors';
-import { Link,useHistory } from 'react-router-dom';
+import { fetchHouses, signoutUser, fetchUserList, fetchUser } from '../actions';
+import { getHousesData, isLoggedIn, getUserList, getToken } from '../selectors';
+import { Link, useHistory } from 'react-router-dom';
 import Card from '../components/Card';
-import { Logout, LoginButton } from '../components/common';
-
+import { ButtonMain, LoginButton } from '../components/common';
 
 const Home = () => {
   const dispatch = useDispatch();
   const houses = useSelector(getHousesData);
   const isAuthenticate = useSelector(isLoggedIn);
-  const history=useHistory()
+  const houseList = useState(houses);
+  const token = useSelector(getToken);
+  const userList=useSelector(getUserList)
+  
+  const history = useHistory();
   useEffect(() => {
     dispatch(fetchHouses());
   }, [dispatch]);
   const onLogout = () => {
     dispatch(signoutUser());
-    history.push('/')
+    history.push('/');
+  };
+
+  const onFavourite = () => {
+    dispatch(fetchUserList(token));
+    console.log(userList);
   };
   return (
     <div className="mt-6">
       <div className="flex justify-around">
-        <FiMenu />
+        {isAuthenticate ? (
+          <ButtonMain onClick={onFavourite} text="My Favourites" />
+        ) : (
+          <FiMenu />
+        )}
 
         <h2 className="text-lg font-bold">HouseMon</h2>
-        {isAuthenticate ? <Logout onLogout={onLogout} /> : <LoginButton />}
+        {isAuthenticate ? (
+          <ButtonMain text="Logout" onClick={onLogout} />
+        ) : (
+          <LoginButton />
+        )}
       </div>
       <div className="my-8 p-2 flex flex-col items-center">
         {houses.length !== 0
