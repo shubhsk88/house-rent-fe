@@ -2,14 +2,16 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchHouse, resetHouse } from '../../actions';
-import { getHouse } from '../../selectors';
+import { getHouse, isLoggedIn } from '../../selectors';
 import { AiOutlineLeft, AiOutlineSearch } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import StyledDescription from './style';
+
 const Description = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const house = useSelector(getHouse);
+  const isAuthenticate = useSelector(isLoggedIn);
   const isLoading = useSelector((state) => state.houses.isHouseLoaded);
   useEffect(() => {
     dispatch(fetchHouse(id));
@@ -50,7 +52,9 @@ const Description = () => {
               magnam fugit!
             </p>
           </div>
-          <button className="favourite">Add To favourite</button>
+          {isAuthenticate ? (
+            <button className="favourite">Add To favourite</button>
+          ) : null}
         </StyledDescription>
       ) : (
         <div>Loading</div>

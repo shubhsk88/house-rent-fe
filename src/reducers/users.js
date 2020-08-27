@@ -13,9 +13,14 @@ export default function (state = intialState, action) {
 
   switch (type) {
     case FETCH_USER:
-      return { ...state, user: payload.user, token: payload.token };
+      return {
+        ...state,
+        user: payload.user,
+        token: payload.token,
+        isLoggedIn: true,
+      };
     case SIGNOUT_USER:
-      return { ...state, intialState };
+      return { ...state, user: {}, isLoggedIn: false, token: null };
     default:
       return state;
   }
