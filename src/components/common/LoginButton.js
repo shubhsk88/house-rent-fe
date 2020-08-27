@@ -4,13 +4,19 @@ import { Link } from 'react-router-dom';
 const LoginButton = () => {
   return (
     <div className="flex justify-between">
-      <Link to="/login" className="px-4 py-2 shadow-lg rounded">
+      <Link
+        to="/login"
+        className="px-4 py-2 shadow-lg hover:bg-orange-500 rounded"
+      >
         Login
       </Link>
-      <Link to="/signup" className="px-4 py-2 shadow-lg rounded">
+      <Link
+        to="/signup"
+        className="px-4 py-2 shadow-lg hover:bg-orange-500 rounded"
+      >
         Signup
       </Link>
     </div>
   );
 };
-export {LoginButton};
+export { LoginButton };

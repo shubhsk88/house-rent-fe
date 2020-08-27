@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import { Button, Label, HyperLink, Input } from '../../components/common';
@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import { fetchUser } from '../../actions';
 import StyledLogin from './style';
 import { useHistory } from 'react-router-dom';
-
 
 const LoginSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
@@ -18,6 +17,7 @@ const Login = () => {
   const intialState = { username: '', password: '' };
   const dispatch = useDispatch();
   const history = useHistory();
+  const [errorLogin, setErrorLogin] = useState('');
   const onLogin = async (credential) => {
     try {
       const { data } = await publicFetch.post('/login', credential);
@@ -26,7 +26,8 @@ const Login = () => {
         history.push('/');
       }
     } catch (error) {
-      console.log(error);
+      setErrorLogin(error.response.data.message);
+      
     }
   };
 
@@ -64,6 +65,7 @@ const Login = () => {
                 placeholder="Enter your password"
               />
             </div>
+            {errorLogin ? <div className="my-2 text-red-600 px-8 py-4 ">{errorLogin}</div> : null}
             <Button type="submit" text="Login" />
           </Form>
         </Formik>

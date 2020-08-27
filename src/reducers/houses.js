@@ -1,4 +1,4 @@
-import { FETCH_HOUSES, FETCH_HOUSE,RESET_HOUSE } from '../actions';
+import { FETCH_HOUSES, FETCH_HOUSE, RESET_HOUSE } from '../actions';
 
 const intitalState = {
   houses: [],
@@ -16,8 +16,8 @@ const houses = (state = intitalState, action) => {
     case FETCH_HOUSE:
       return { ...state, house: payload, isHouseLoading: false };
     case RESET_HOUSE:
-      return {...state,house:{}}
-      default:
+      return { ...state, house: {}, isHouseLoading: true };
+    default:
       return state;
   }
 };

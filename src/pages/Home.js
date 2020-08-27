@@ -21,7 +21,7 @@ const Home = () => {
   const token = useSelector(getToken);
   const userList = useSelector(getUserList);
   const isLoaded = useSelector((state) => state.houses.isHousesLoading);
-  console.log(isLoaded);
+  
 
   const history = useHistory();
   useEffect(() => {
@@ -34,7 +34,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    // console.log(favourite);
+    
     if (favourite) {
       setHousesList(userList);
     } else {
