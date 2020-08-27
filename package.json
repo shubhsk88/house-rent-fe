@@ -21,6 +21,7 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.1.1",
     "twin.macro": "^1.7.0",
+    "redux-devtools-extension": "^2.13.8",
     "yup": "^0.29.3"
   },
   "scripts": {
@@ -57,7 +58,6 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "postcss-cli": "^7.1.1",
-    "redux-devtools-extension": "^2.13.8",
     "tailwindcss": "^1.7.3"
   },
   "lint-staged": {

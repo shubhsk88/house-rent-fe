@@ -18,18 +18,13 @@ export function signoutUser() {
 }
 
 export function fetchUserList(token) {
-  return async function (dispatch) {
+  return async function helper(dispatch) {
     const config = {
       headers: { Authorization: `Bearer  ${token}` },
     };
 
-    try {
-      const data = await publicFetch.get('/auto_login', config);
-      console.log(data);
+    const data = await publicFetch.get('/auto_login', config);
 
-      return dispatch({ type: FETCH_USER_LIST, payload: data.data.houses });
-    } catch (e) {
-      console.error(e);
-    }
+    return dispatch({ type: FETCH_USER_LIST, payload: data.data.houses });
   };
 }

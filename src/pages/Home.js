@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { FiMenu } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchHouses, signoutUser, fetchUserList } from '../actions';
-import { getHousesData, isLoggedIn, getUserList, getToken } from '../selectors';
 import { Link, useHistory } from 'react-router-dom';
-import Card from '../components/Card';
-import { ButtonMain, LoginButton, Loading } from '../components/common';
 import Carousel, {
   slidesToShowPlugin,
   slidesToScrollPlugin,
 } from '@brainhubeu/react-carousel';
+import { fetchHouses, signoutUser, fetchUserList } from '../actions';
+import {
+  getHousesData, isLoggedIn, getUserList, getToken,
+} from '../selectors';
+import Card from '../components/Card';
+import { ButtonMain, LoginButton, Loading } from '../components/common';
 import '@brainhubeu/react-carousel/lib/style.css';
 
 const Home = () => {
@@ -20,8 +22,7 @@ const Home = () => {
   const [housesList, setHousesList] = useState(houses);
   const token = useSelector(getToken);
   const userList = useSelector(getUserList);
-  const isLoaded = useSelector((state) => state.houses.isHousesLoading);
-  
+  const isLoaded = useSelector(state => state.houses.isHousesLoading);
 
   const history = useHistory();
   useEffect(() => {
@@ -34,7 +35,6 @@ const Home = () => {
   };
 
   useEffect(() => {
-    
     if (favourite) {
       setHousesList(userList);
     } else {
@@ -49,7 +49,6 @@ const Home = () => {
     // setHousesList(userList);
   };
   const onHome = () => {
-    console.log('hiii');
     setFavourite(false);
   };
 
@@ -97,11 +96,11 @@ const Home = () => {
             offset={-120}
           >
             {housesList.length !== 0
-              ? housesList.map((house) => (
-                  <Link key={house.id} to={`/houses/${house.id}`}>
-                    <Card house={house} />
-                  </Link>
-                ))
+              ? housesList.map(house => (
+                <Link key={house.id} to={`/houses/${house.id}`}>
+                  <Card house={house} />
+                </Link>
+              ))
               : null}
           </Carousel>
         </div>

@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
-import { Button, Label, HyperLink, Input } from '../../components/common';
-import { publicFetch } from '../../utils';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import {
+  Button, Label, HyperLink, Input,
+} from '../../components/common';
+import { publicFetch } from '../../utils';
 import { fetchUser } from '../../actions';
 import StyledLogin from './style';
-import { useHistory } from 'react-router-dom';
 
 const LoginSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
@@ -18,7 +20,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [errorLogin, setErrorLogin] = useState('');
-  const onLogin = async (credential) => {
+  const onLogin = async credential => {
     try {
       const { data } = await publicFetch.post('/login', credential);
       if (data.token) {
@@ -27,7 +29,6 @@ const Login = () => {
       }
     } catch (error) {
       setErrorLogin(error.response.data.message);
-      
     }
   };
 
@@ -37,12 +38,15 @@ const Login = () => {
         <h1 className="header-title">Login </h1>
         <p>Hello There,Welcome back</p>
         <p>
-          Not a user sign up here? <HyperLink to="/signup" text="Signup" />{' '}
+          Not a user sign up here?
+          {' '}
+          <HyperLink to="/signup" text="Signup" />
+          {' '}
         </p>
         <Formik
           initialValues={intialState}
           validationSchema={LoginSchema}
-          onSubmit={(values) => onLogin(values)}
+          onSubmit={values => onLogin(values)}
         >
           <Form>
             <div className="mt-8 mb-4">

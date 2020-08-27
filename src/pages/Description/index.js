@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchHouse, resetHouse } from '../../actions';
-import { getHouse, isLoggedIn, getUserId, getUserList } from '../../selectors';
 import { AiOutlineLeft } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { fetchHouse, resetHouse } from '../../actions';
+import {
+  getHouse, isLoggedIn, getUserId, getUserList,
+} from '../../selectors';
+
 import StyledDescription from './style';
 import { publicFetch } from '../../utils';
-import { Loading } from '../../components/common';
+import { Loading, Error } from '../../components/common';
 
 const Description = () => {
   const { id } = useParams();
@@ -16,10 +18,11 @@ const Description = () => {
   const isAuthenticate = useSelector(isLoggedIn);
   const userId = useSelector(getUserId);
   const houseList = useSelector(getUserList);
+  const [checkError, setCheckError] = useState('');
 
   const [checkFavourite, setCheckFavourite] = useState(false);
 
-  const isLoading = useSelector((state) => state.houses.isHouseLoading);
+  const isLoading = useSelector(state => state.houses.isHouseLoading);
 
   useEffect(() => {
     dispatch(fetchHouse(id));
@@ -33,18 +36,20 @@ const Description = () => {
     try {
       await publicFetch.post('/favourites', userCredentials);
     } catch (e) {
-      console.error(e);
+      setCheckError(e.response.data.message);
     }
   };
   useEffect(() => {
-    let check = !!houseList.find((house) => house.id === Number(id));
-    console.log(houseList, id, check);
+    const check = !!houseList.find(house => house.id === Number(id));
+
     if (check) {
       setCheckFavourite(true);
     }
   }, [houseList, id]);
 
-  return (
+  return checkError ? (
+    <Error text={checkError} />
+  ) : (
     <>
       {isLoading ? (
         <Loading />
@@ -59,11 +64,14 @@ const Description = () => {
           <div className="image-container ">
             <div className="flex justify-around">
               <div className="host">
-                <div className="host-avatar"></div>
+                <div className="host-avatar" />
                 <div className="host-title">Sara Drasner</div>
               </div>
               <div className="pricing">
-                <div className="price">${house.price}</div>
+                <div className="price">
+                  $
+                  {house.price}
+                </div>
                 <div>Per Month</div>
               </div>
             </div>

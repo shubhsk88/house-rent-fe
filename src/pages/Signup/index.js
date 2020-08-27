@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
-import { publicFetch } from '../../utils';
-import { Label, Input, HyperLink, Button } from '../../components/common';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { publicFetch } from '../../utils';
+import {
+  Label, Input, HyperLink, Button,
+} from '../../components/common';
 import { fetchUser } from '../../actions';
 import StyledLogin from '../Login/style';
-import { useHistory } from 'react-router-dom';
+
 const SignupSchema = Yup.object().shape({
   username: Yup.string().required('The username is required'),
   password: Yup.string()
@@ -20,7 +23,7 @@ const SignUp = () => {
   const history = useHistory();
   const [errorSign, setErrorSign] = useState('');
   const dispatch = useDispatch();
-  const submitData = async (value) => {
+  const submitData = async value => {
     try {
       const { data } = await publicFetch.post('/users', value);
       if (data.token) {
@@ -40,11 +43,13 @@ const SignUp = () => {
       <div>
         <h2 className="header-title">Sign Up </h2>
         <p>
-          Already Have an account? <HyperLink to="login" text="Login Here" />
+          Already Have an account?
+          {' '}
+          <HyperLink to="login" text="Login Here" />
         </p>
         <Formik
           initialValues={initialValues}
-          onSubmit={(values) => submitData(values)}
+          onSubmit={values => submitData(values)}
           validationSchema={SignupSchema}
         >
           {() => (
@@ -80,7 +85,7 @@ const SignUp = () => {
                   placeholder="Enter your Pasword"
                 />
               </div>
-              {errorSign? <div className="my-2 bg-red-400">{errorSign}</div>:null}
+              {errorSign ? <div className="my-2 bg-red-400">{errorSign}</div> : null}
               <Button type="submit" text="Sign up" />
             </Form>
           )}

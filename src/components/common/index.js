@@ -5,3 +5,4 @@ export * from './Label';
 export * from './LoginButton';
 export * from './ButtonMain';
 export * from './Loading';
+export * from './Error';
