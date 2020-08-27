@@ -2,16 +2,19 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchHouse, resetHouse } from '../../actions';
-import { getHouse, isLoggedIn } from '../../selectors';
+import { getHouse, isLoggedIn, getUserId } from '../../selectors';
 import { AiOutlineLeft, AiOutlineSearch } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import StyledDescription from './style';
+import { publicFetch } from '../../utils';
 
 const Description = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const house = useSelector(getHouse);
   const isAuthenticate = useSelector(isLoggedIn);
+  const userId = useSelector(getUserId);
+
   const isLoading = useSelector((state) => state.houses.isHouseLoaded);
   useEffect(() => {
     dispatch(fetchHouse(id));
@@ -19,6 +22,17 @@ const Description = () => {
       dispatch(resetHouse());
     };
   }, [dispatch, id]);
+  const addTofavourite = async () => {
+    const userCredentials = { user_id: userId, house_id: id };
+    try{
+      const {data} = await publicFetch.post('/favourites', userCredentials);
+
+    }catch(e)
+    {
+      console.error(e)
+    }
+    
+  };
 
   return (
     <>
@@ -52,7 +66,11 @@ const Description = () => {
               magnam fugit!
             </p>
           </div>
-          {isAuthenticate?<button className="favourite">Add To favourite</button>:null}
+          {isAuthenticate ? (
+            <button onClick={addTofavourite} className="favourite">
+              Add To favourite
+            </button>
+          ) : null}
         </StyledDescription>
       ) : (
         <div>Loading</div>
