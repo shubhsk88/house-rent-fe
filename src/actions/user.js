@@ -5,15 +5,10 @@ export const FETCH_USER_LIST = 'USER_LIST';
 export const SIGNOUT_USER = 'SIGNOUT_USER';
 
 export function fetchUser(data) {
-  localStorage.setItem('token', data.token);
-  localStorage.setItem('user', JSON.stringify(data.user));
   return { type: FETCH_USER, payload: data };
 }
 
 export function signoutUser() {
-  localStorage.removeItem('token');
-  localStorage.removeItem('user');
-
   return { type: SIGNOUT_USER };
 }
 

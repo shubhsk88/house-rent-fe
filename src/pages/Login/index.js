@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import {
   Button, Label, HyperLink, Input,
 } from '../../components/common';
-import { publicFetch } from '../../utils';
+import { publicFetch, setLocalStorage } from '../../utils';
 import { fetchUser } from '../../actions';
 import StyledLogin from './style';
 
@@ -24,6 +24,7 @@ const Login = () => {
     try {
       const { data } = await publicFetch.post('/login', credential);
       if (data.token) {
+        setLocalStorage(data);
         dispatch(fetchUser(data));
         history.push('/');
       }
@@ -69,7 +70,9 @@ const Login = () => {
                 placeholder="Enter your password"
               />
             </div>
-            {errorLogin ? <div className="my-2 text-red-600 px-8 py-4 ">{errorLogin}</div> : null}
+            {errorLogin ? (
+              <div className="my-2 text-red-600 px-8 py-4 ">{errorLogin}</div>
+            ) : null}
             <Button type="submit" text="Login" />
           </Form>
         </Formik>

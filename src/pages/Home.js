@@ -13,6 +13,7 @@ import {
 import Card from '../components/Card';
 import { ButtonMain, LoginButton, Loading } from '../components/common';
 import '@brainhubeu/react-carousel/lib/style.css';
+import { removeLocalStorage } from '../utils';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const Home = () => {
     dispatch(fetchHouses());
   }, [dispatch]);
   const onLogout = () => {
+    removeLocalStorage();
     dispatch(signoutUser());
     setHousesList(houses);
     history.push('/');

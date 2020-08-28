@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { publicFetch } from '../../utils';
+import { publicFetch, setLocalStorage } from '../../utils';
 import {
   Label, Input, HyperLink, Button,
 } from '../../components/common';
@@ -28,7 +28,7 @@ const SignUp = () => {
       const { data } = await publicFetch.post('/users', value);
       if (data.token) {
         history.push('/');
-
+        setLocalStorage(data);
         dispatch(fetchUser(data));
       }
     } catch (error) {
@@ -85,7 +85,9 @@ const SignUp = () => {
                   placeholder="Enter your Pasword"
                 />
               </div>
-              {errorSign ? <div className="my-2 bg-red-400">{errorSign}</div> : null}
+              {errorSign ? (
+                <div className="my-2 bg-red-400">{errorSign}</div>
+              ) : null}
               <Button type="submit" text="Sign up" />
             </Form>
           )}
