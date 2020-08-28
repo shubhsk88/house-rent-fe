@@ -65,4 +65,4 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgements
 
-- Behance design by [Alexey Savitskiy](<https://www.behance.net/gallery/37706679/Circle-(Landing-page-Dashboard-Mobile-App))
+- Behance design by [Alexey Savitskiy](<https://www.behance.net/gallery/37706679/Circle-(Landing-page-Dashboard-Mobile-App)>)
