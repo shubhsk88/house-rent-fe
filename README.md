@@ -6,7 +6,7 @@ This is the frontend part of the application in order to see the api part of thi
 
 ## Live Demo
 
-[View Live Demo](https://pokedexi.netlify.app/)
+[View Live Demo](https://amazing-ritchie-a9a853.netlify.app/)
 
 ## Screenshots
 
