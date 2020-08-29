@@ -28,7 +28,8 @@ const Home = () => {
   const history = useHistory();
   useEffect(() => {
     dispatch(fetchHouses());
-  }, [dispatch]);
+    // eslint-disable-next-line
+  }, []);
   const onLogout = () => {
     removeLocalStorage();
     dispatch(signoutUser());
