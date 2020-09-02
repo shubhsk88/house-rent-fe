@@ -28,8 +28,8 @@
     "autoprefixer": "^9.8.6"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "yarn run build:css && react-scripts start ",
+    "build": "yarn run build:css && react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
     "lint:fix": "eslint \"src/**/*.{js,jsx}\" --fix",
